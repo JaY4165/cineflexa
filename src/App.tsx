@@ -5,24 +5,26 @@ import LoadingPage from "./pages/LoadingPage";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 function App() {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Navbar />,
-      errorElement: <ErrorPage />,
-      children: [
-        {
-          path: "/",
-          index: true,
-          element: <HomePage />,
-        },
-      ],
-    },
-  ]);
+  // const router = createBrowserRouter([
+  //   {
+  //     path: "/",
+  //     element: <Navbar />,
+  //     errorElement: <ErrorPage />,
+  //     children: [
+  //       {
+  //         path: "/",
+  //         index: true,
+  //         element: <HomePage />,
+  //       },
+  //     ],
+  //   },
+  // ]);
 
   return (
     <div className="App">
-      <RouterProvider router={router} />
+      {/* <RouterProvider router={router} /> */}
+      <Navbar />
+      <HomePage />
     </div>
   );
 }
