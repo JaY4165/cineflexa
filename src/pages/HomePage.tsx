@@ -15,7 +15,18 @@ const HomePage: any = () => {
 
   console.log(data);
 
-  return <div className="h-screen w-screen bg-[rgb(7,7,7)]"></div>;
+  return (
+    <div className="h-screen w-screen bg-[rgb(7,7,7)] overflow-x-hidden">
+      <div className="">
+        <figure>
+          <img
+            src="https://image.tmdb.org/t/p/original/8Y43POKjjKDGI9MH89NW0NAzzp8.jpg"
+            alt=""
+          />
+        </figure>
+      </div>
+    </div>
+  );
 };
 
 export default HomePage;

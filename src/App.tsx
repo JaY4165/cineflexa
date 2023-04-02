@@ -21,7 +21,7 @@ function App() {
   // ]);
 
   return (
-    <div className="App">
+    <div className="App overflow-x-hidden">
       {/* <RouterProvider router={router} /> */}
       <Navbar />
       <HomePage />
