@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { getPopularMovies } from "../api/tmdb_api";
 import { AxiosResponse } from "axios";
-import { useEffect } from "react";
+import blade2 from "../assets/bladerunner2.jpg";
 
-const HomePage: any = () => {
+const HomePage = () => {
   const { data, isLoading, error } = useQuery<AxiosResponse>({
     queryKey: ["popularMovies"],
     queryFn: getPopularMovies,
@@ -16,15 +16,12 @@ const HomePage: any = () => {
   console.log(data);
 
   return (
-    <div className="h-screen w-screen bg-[rgb(7,7,7)] overflow-x-hidden">
-      <div className="">
-        <figure>
-          <img
-            src="https://image.tmdb.org/t/p/original/8Y43POKjjKDGI9MH89NW0NAzzp8.jpg"
-            alt=""
-          />
-        </figure>
-      </div>
+    <div className="h-screen w-screen  bg-[rgb(7,7,7)] overflow-x-hidden">
+      <div
+        className={`justify-center h-full object-cover
+        bg-no-repeat bg-cover bg-center brightness-75`}
+        style={{ backgroundImage: `url(${blade2})` }}
+      ></div>
     </div>
   );
 };
