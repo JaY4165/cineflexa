@@ -21,7 +21,7 @@ const HomePage = () => {
     <div className="h-screen w-screen  bg-[rgb(7,7,7)] overflow-x-hidden">
       <div
         className={`justify-center h-full object-cover
-        bg-no-repeat bg-cover bg-center brightness-75`}
+        bg-no-repeat bg-cover bg-center brightness-75 overflow-y-hidden`}
         style={{ backgroundImage: `url(${blade1})` }}
       >
         <div className="flex flex-col justify-end h-full w-full pb-20 pl-4 md:pl-7 md:pt-52">
