@@ -25,7 +25,7 @@ const HomePage = () => {
         style={{ backgroundImage: `url(${blade1})` }}
       >
         <div className="flex flex-col justify-end h-full w-full pb-20 pl-4 md:pl-7 md:pt-52">
-          <h1 className="text-white text-3xl sm:text-3xl md:text-4xl lg:text-6xl pb-4 font-mono font-bold ">
+          <h1 className="text-white text-3xl sm:text-3xl md:text-4xl lg:text-6xl pb-4 pl-1 font-mono font-bold ">
             Blade Runner 2049
           </h1>
           <div className="pl-1 md:inline-flex">
@@ -53,7 +53,7 @@ const HomePage = () => {
               </span>
             </div>
           </div>
-          <div className="pl-2">
+          <div className="pl-3 md:pl-2">
             <p className="paragraph text-white text-sm pt-5 font-mono font-light max-w-[90%] md:max-w-[65%] lg:max-w-[70%] xl:max-w-[75%]">
               Thirty years after the events of the first film, a new blade
               runner, LAPD Officer K, unearths a long-buried secret that has the
