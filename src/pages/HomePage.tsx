@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getPopularMovies } from "../api/tmdb_api";
 import { AxiosResponse } from "axios";
-import blade2 from "../assets/bladerunner2.jpg";
+import blade1 from "../assets/bladerunner1.jpg";
 import { BsStarFill } from "react-icons/bs";
 import "../css/HomePageCss/home.css";
 
@@ -22,10 +22,10 @@ const HomePage = () => {
       <div
         className={`justify-center h-full object-cover
         bg-no-repeat bg-cover bg-center brightness-75`}
-        style={{ backgroundImage: `url(${blade2})` }}
+        style={{ backgroundImage: `url(${blade1})` }}
       >
         <div className="flex flex-col justify-end h-full w-full pb-20 pl-4 md:pl-7 md:pt-52">
-          <h1 className="text-white text-4xl pb-4 font-mono font-bold md:text-6xl">
+          <h1 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-6xl pb-4 font-mono font-bold ">
             Blade Runner 2049
           </h1>
           <div className="pl-1 inline-flex">
@@ -41,6 +41,11 @@ const HomePage = () => {
               1055
             </span>
             <span className="text-white/75 pt-[0.7rem] pl-6">2h 35m</span>
+            <span className="text-white/75 pt-[0.7rem] pl-6">
+              <ul>
+                <li className="list-item list-disc">Science Fiction , Drama</li>
+              </ul>
+            </span>
           </div>
           <div className="">
             <p className="paragraph text-white text-sm pt-5 font-mono font-light max-w-[90%] md:max-w-[65%] lg:max-w-[70%] xl:max-w-[75%]">

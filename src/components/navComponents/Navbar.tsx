@@ -9,8 +9,8 @@ const Navbar = () => {
     <>
       <nav
         className={`${
-          isOpen === !true ? "h-16" : "h-screen"
-        } pl-5 w-full bg-transparent overflow-x-hidden overflow-y-hidden z-50 fixed top-0 backdrop-blur-[8px]`}
+          isOpen === !true ? "h-16" : "h-screen backdrop-blur-[8px]"
+        } pl-5 w-full bg-transparent overflow-x-hidden overflow-y-hidden z-50 fixed top-0`}
       >
         <section className="flex justify-between item-center h-full w-full">
           <div className="pt-5">

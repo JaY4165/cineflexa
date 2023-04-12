@@ -24,7 +24,7 @@ const DesktopNav = () => {
           onToggle={() => changeSideBarOpened(!showSideBar)}
         />
       </div>
-      <div className="font-light font-sans flex items-center max-md:hidden">
+      <div className="font-light font-sans flex items-center max-md:hidden backdrop-blur-[8px]">
         <Link
           to="/movies"
           className="pl-7 text-white/80 text-xl hover:text-white hover:duration-300 duration-1000"
