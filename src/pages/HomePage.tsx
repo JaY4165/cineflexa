@@ -25,29 +25,35 @@ const HomePage = () => {
         style={{ backgroundImage: `url(${blade1})` }}
       >
         <div className="flex flex-col justify-end h-full w-full pb-20 pl-4 md:pl-7 md:pt-52">
-          <h1 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-6xl pb-4 font-mono font-bold ">
+          <h1 className="text-white text-3xl sm:text-3xl md:text-4xl lg:text-6xl pb-4 font-mono font-bold ">
             Blade Runner 2049
           </h1>
-          <div className="pl-1 inline-flex">
-            <span>
-              <BsStarFill size={30} color="gold" />
-            </span>
-            <span className="text-white text-3xl pl-2 font-mono font-thin">
-              8.1
-            </span>
+          <div className="pl-1 md:inline-flex">
+            <div className="inline-flex">
+              <span>
+                <BsStarFill size={30} color="gold" />
+              </span>
+              <span className="text-white text-3xl pl-2 font-mono font-thin">
+                8.1
+              </span>
 
-            <span className="text-slate-300 text-2xl pl-3">|</span>
-            <span className="text-white text-2xl pt-1.5 pl-2 font-mono font-light">
-              1055
-            </span>
-            <span className="text-white/75 pt-[0.7rem] pl-6">2h 35m</span>
-            <span className="text-white/75 pt-[0.7rem] pl-6">
-              <ul>
-                <li className="list-item list-disc">Science Fiction , Drama</li>
-              </ul>
-            </span>
+              <span className="text-slate-300 text-2xl pl-3">|</span>
+              <span className="text-white/70 text-2xl pt-1.5 pl-2 font-mono font-light">
+                1055
+              </span>
+            </div>
+            <div className="inline-flex md:pl-6">
+              <span className="text-white/75 pt-[0.7rem] pl-2">2h 35m</span>
+              <span className="text-white/75 pt-[0.7rem] pl-6">
+                <ul>
+                  <li className="list-item list-disc">
+                    Science Fiction , Drama
+                  </li>
+                </ul>
+              </span>
+            </div>
           </div>
-          <div className="">
+          <div className="pl-2">
             <p className="paragraph text-white text-sm pt-5 font-mono font-light max-w-[90%] md:max-w-[65%] lg:max-w-[70%] xl:max-w-[75%]">
               Thirty years after the events of the first film, a new blade
               runner, LAPD Officer K, unearths a long-buried secret that has the
