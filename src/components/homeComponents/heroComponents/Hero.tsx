@@ -4,11 +4,11 @@ import "../../../css/HomePageCss/home.css";
 import { Page, Movie } from "../../../types";
 
 interface Props {
-  data: Page;
+  data: Movie[];
 }
 
-const Hero = ({ data }: any) => {
-  // console.log(data);
+const Hero = ({ data }: Props) => {
+  console.log(data);
   return (
     <div className="h-screen w-screen  bg-[rgb(7,7,7)] overflow-x-hidden">
       <div

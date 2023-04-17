@@ -10,12 +10,11 @@ const HomePage = () => {
     queryFn: getPopularMovies,
   });
 
-  const res : Page = data?.data;
+  const res: Movie[] = data?.data?.results;
 
   if (isLoading) console.log("Loading...");
 
   if (error) console.log("An error has occurred");
-  console.log(res);
 
   return <Hero data={res} />;
 };
