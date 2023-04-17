@@ -1,8 +1,14 @@
 import blade1 from "../../../assets/bladerunner1.jpg";
 import { BsStarFill } from "react-icons/bs";
 import "../../../css/HomePageCss/home.css";
+import { Page, Movie } from "../../../types";
+
+interface Props {
+  data: Page;
+}
 
 const Hero = ({ data }: any) => {
+  // console.log(data);
   return (
     <div className="h-screen w-screen  bg-[rgb(7,7,7)] overflow-x-hidden">
       <div
