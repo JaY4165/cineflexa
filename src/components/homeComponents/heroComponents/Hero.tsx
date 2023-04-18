@@ -1,14 +1,19 @@
 import blade1 from "../../../assets/bladerunner1.jpg";
 import { BsStarFill } from "react-icons/bs";
 import "../../../css/HomePageCss/home.css";
-import { Page, Movie } from "../../../types";
+import { Movie } from "../../../types";
 
 interface Props {
   data: Movie[];
 }
 
 const Hero = ({ data }: Props) => {
-  console.log(data);
+  const movieData = data;
+  if (movieData) {
+    console.log(movieData[0]);
+  } else {
+    console.log("empty");
+  }
   return (
     <div className="h-screen w-screen  bg-[rgb(7,7,7)] overflow-x-hidden">
       <div
