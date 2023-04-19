@@ -2,18 +2,31 @@ import blade1 from "../../../assets/bladerunner1.jpg";
 import { BsStarFill } from "react-icons/bs";
 import "../../../css/HomePageCss/home.css";
 import { Movie } from "../../../types";
+import { useState, useLayoutEffect, useEffect } from "react";
 
 interface Props {
-  data: Movie[];
+  heroMovie: Movie[];
 }
 
-const Hero = ({ data }: Props) => {
-  const movieData = data;
-  if (movieData) {
-    console.log(movieData[0]);
-  } else {
-    console.log("empty");
-  }
+const Hero = ({ heroMovie }: Props) => {
+  const [banner, setBanner] = useState<Movie[] | []>([]);
+  const [randomMovie, setRandomMovie] = useState<Number | any>(10);
+  const [bannerMovie, setBannerMovie] = useState<Movie | null>(null);
+
+  useLayoutEffect(() => {
+    setRandomMovie(Math.floor(Math.random() * 19));
+    if (heroMovie) setBanner(heroMovie);
+  }, [heroMovie]);
+
+  useEffect(() => {
+    setBannerMovie(banner[randomMovie]);
+
+    return () => {
+      setBannerMovie({});
+    };
+  }, [banner]);
+
+  console.log(bannerMovie);
   return (
     <div className="h-screen w-screen  bg-[rgb(7,7,7)] overflow-x-hidden">
       <div
@@ -23,7 +36,7 @@ const Hero = ({ data }: Props) => {
       >
         <div className="flex flex-col justify-end h-full w-full pb-20 pl-4 md:pl-7 md:pt-52">
           <h1 className="text-white text-3xl sm:text-3xl md:text-4xl lg:text-6xl pb-4 pl-1 font-mono font-bold ">
-            Blade Runner 2049
+            {bannerMovie?.title || "Blade Runner"}
           </h1>
           <div className="pl-1 md:inline-flex">
             <div className="inline-flex">
@@ -31,12 +44,12 @@ const Hero = ({ data }: Props) => {
                 <BsStarFill size={30} color="gold" />
               </span>
               <span className="text-white text-3xl pl-2 font-mono font-thin">
-                8.1
+                {bannerMovie?.vote_average || "8.1"}
               </span>
 
               <span className="text-slate-300 text-2xl pl-3">|</span>
               <span className="text-white/70 text-2xl pt-1.5 pl-2 font-mono font-light">
-                1055
+                {bannerMovie?.vote_count || "1055"}
               </span>
             </div>
             <div className="inline-flex md:pl-6">
