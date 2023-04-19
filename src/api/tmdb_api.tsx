@@ -8,9 +8,11 @@ export const getPopularMovies = (): Promise<AxiosResponse> => {
   });
 };
 
-export const getMovieImage = (): Promise<AxiosResponse> => {
+export const getMovieImage = (
+  imgUrl: String | null | undefined
+): Promise<AxiosResponse> => {
   return request({
     method: "get",
-    url: `t/p/original/`,
+    url: `t/p/original/${imgUrl}`,
   });
 };

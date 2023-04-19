@@ -5,7 +5,7 @@ import { Movie } from "../../../types";
 import { useState, useLayoutEffect, useEffect } from "react";
 import { getMovieImage } from "../../../api/tmdb_api";
 import { useQuery } from "@tanstack/react-query";
-import { AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 
 interface Props {
   heroMovie: Movie[];
@@ -15,12 +15,10 @@ const Hero = ({ heroMovie }: Props) => {
   const [banner, setBanner] = useState<Movie[] | []>([]);
   const [randomMovie, setRandomMovie] = useState<Number | any>(10);
   const [bannerMovie, setBannerMovie] = useState<Movie | null>(null);
-  const [bannerImage, setBannerImage] = useState(null);
-
-  const { data, isLoading, error } = useQuery<AxiosResponse>({
-    queryKey: ["getMovieImage"],
-    queryFn: getMovieImage,
-  });
+  const [bannerImage, setBannerImage] = useState<String | null | undefined>(
+    null
+  );
+  const imageUrl = `https://image.tmdb.org/t/p/original`;
 
   useLayoutEffect(() => {
     setRandomMovie(Math.floor(Math.random() * 19));
@@ -29,26 +27,41 @@ const Hero = ({ heroMovie }: Props) => {
 
   useEffect(() => {
     setBannerMovie(banner[randomMovie]);
-
     return () => {
       setBannerMovie({});
     };
   }, [banner]);
 
   console.log(bannerMovie);
+
+  useEffect(() => {
+    const fetchMovieImage = async () => {
+      await axios
+        .get(`${imageUrl}${bannerMovie?.poster_path}`)
+        .then((res) => {
+          console.log(res.config.url);
+          setBannerImage(res.config.url);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    if (bannerMovie) fetchMovieImage();
+  }, [bannerMovie]);
+
   return (
     <div className="h-screen w-screen  bg-[rgb(7,7,7)] overflow-x-hidden">
       <div
         className={`justify-center h-full object-cover
-        bg-no-repeat bg-cover bg-center brightness-[0.6]`}
-        style={{ backgroundImage: `url(${blade1})` }}
+        bg-no-repeat bg-cover bg-center brightness-[0.5] opacity-30`}
+        style={{ backgroundImage: `url(${bannerImage || blade1})` }}
       >
         <div className="flex flex-col justify-end h-full w-full pb-20 pl-4 md:pl-7 md:pt-52">
           <h1 className="text-white text-3xl sm:text-3xl md:text-4xl lg:text-6xl pb-4 pl-1 font-mono font-bold ">
             {bannerMovie?.title || "Blade Runner"}
           </h1>
           <div className="pl-1 md:inline-flex">
-            <div className="inline-flex">
+            <div className="inline-flex">     
               <span>
                 <BsStarFill size={30} color="gold" />
               </span>
