@@ -8,7 +8,7 @@ export const getPopularMovies = (): Promise<AxiosResponse> => {
   });
 };
 
-export const getMovieImages = (): Promise<AxiosResponse> => {
+export const getMovieImage = (): Promise<AxiosResponse> => {
   return request({
     method: "get",
     url: `t/p/original/`,

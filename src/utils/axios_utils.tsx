@@ -14,7 +14,7 @@ export const request = async ({
     const response = await client(options);
     return response;
   } catch (error) {
-    console.error("Request Failed:");
+    console.error("Request Failed : ", error);
     throw error;
   }
 };

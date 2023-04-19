@@ -3,6 +3,9 @@ import { BsStarFill } from "react-icons/bs";
 import "../../../css/HomePageCss/home.css";
 import { Movie } from "../../../types";
 import { useState, useLayoutEffect, useEffect } from "react";
+import { getMovieImage } from "../../../api/tmdb_api";
+import { useQuery } from "@tanstack/react-query";
+import { AxiosResponse } from "axios";
 
 interface Props {
   heroMovie: Movie[];
@@ -12,6 +15,12 @@ const Hero = ({ heroMovie }: Props) => {
   const [banner, setBanner] = useState<Movie[] | []>([]);
   const [randomMovie, setRandomMovie] = useState<Number | any>(10);
   const [bannerMovie, setBannerMovie] = useState<Movie | null>(null);
+  const [bannerImage, setBannerImage] = useState(null);
+
+  const { data, isLoading, error } = useQuery<AxiosResponse>({
+    queryKey: ["getMovieImage"],
+    queryFn: getMovieImage,
+  });
 
   useLayoutEffect(() => {
     setRandomMovie(Math.floor(Math.random() * 19));
@@ -53,7 +62,9 @@ const Hero = ({ heroMovie }: Props) => {
               </span>
             </div>
             <div className="inline-flex md:pl-6">
-              <span className="text-white/75 pt-[0.7rem] pl-2">2h 35m</span>
+              <span className="text-white/75 pt-[0.7rem] pl-2">
+                {bannerMovie?.original_language || "en"}
+              </span>
               <span className="text-white/75 pt-[0.7rem] pl-6">
                 <ul>
                   <li className="list-item list-disc">
