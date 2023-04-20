@@ -58,8 +58,8 @@ const Hero = ({ heroMovie }: Props) => {
         bg-no-repeat bg-cover bg-center`}
         style={{ backgroundImage: `url(${bannerImage || blade1})` }}
       >
-        <div className="flex flex-col justify-end h-full w-full pb-20 pl-4 md:pl-7 md:pt-52 backdrop-brightness-[0.25]">
-          <h1 className="text-white text-3xl sm:text-3xl md:text-4xl lg:text-6xl pb-4 pl-1 font-mono font-bold">
+        <div className="flex flex-col justify-end h-full w-full pb-20 pl-4 md:pl-7 md:pt-52 backdrop-brightness-[0.25] font-[Poppins]">
+          <h1 className="text-white text-3xl sm:text-3xl md:text-4xl lg:text-6xl pb-4 pl-1 font-[Poppins] font-bold">
             {bannerMovie?.title || "Blade Runner"}
           </h1>
           <div className="pl-1 md:inline-flex">
@@ -67,17 +67,17 @@ const Hero = ({ heroMovie }: Props) => {
               <span>
                 <BsStarFill size={30} color="gold" />
               </span>
-              <span className="text-white text-3xl pl-2 font-mono font-thin">
+              <span className="text-white text-3xl pl-2 font-[Poppins] font-thin">
                 {bannerMovie?.vote_average || "8.1"}
               </span>
 
               <span className="text-slate-300 text-2xl pl-3">|</span>
-              <span className="text-white/70 text-2xl pt-1.5 pl-2 font-mono font-light">
+              <span className="text-white/70 text-2xl pt-1.5 pl-2 font-[Poppins] font-light">
                 {bannerMovie?.vote_count || "1055"}
               </span>
             </div>
             <div className="inline-flex md:pl-6">
-              <span className="text-white/75 pt-[0.7rem] pl-2">
+              <span className="text-white/75 pt-[0.7rem] pl-2 font-[Poppins]">
                 {bannerMovie?.original_language || "en"}
               </span>
               <span className="text-white/75 pt-[0.7rem] pl-6">
@@ -97,7 +97,7 @@ const Hero = ({ heroMovie }: Props) => {
             </div>
           </div>
           <div className="pl-3 md:pl-2">
-            <p className="paragraph text-white text-sm pt-5 font-mono font-light max-w-[90%] md:max-w-[65%] lg:max-w-[70%] xl:max-w-[75%]">
+            <p className="paragraph text-white/80 text-md pt-5 font-mono font-light  max-w-[90%] md:max-w-[65%] lg:max-w-[70%] xl:max-w-[75%]">
               {bannerMovie?.overview ||
                 `Thirty years after the events of the first film, a new blade
               runner, LAPD Officer K, unearths a long-buried secret that has the
