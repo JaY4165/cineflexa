@@ -3,8 +3,6 @@ import { BsStarFill } from "react-icons/bs";
 import "../../../css/HomePageCss/home.css";
 import { Movie } from "../../../types";
 import { useState, useLayoutEffect, useEffect } from "react";
-import { getMovieImage } from "../../../api/tmdb_api";
-import { useQuery } from "@tanstack/react-query";
 import axios, { AxiosResponse } from "axios";
 
 interface Props {
