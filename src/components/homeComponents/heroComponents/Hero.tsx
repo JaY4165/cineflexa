@@ -3,7 +3,7 @@ import { BsStarFill } from "react-icons/bs";
 import "../../../css/HomePageCss/home.css";
 import { Movie } from "../../../types";
 import { useState, useLayoutEffect, useEffect } from "react";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 
 interface Props {
   heroMovie: Movie[];

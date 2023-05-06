@@ -1,30 +1,25 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useQuery } from "@tanstack/react-query";
-import { AxiosResponse } from "axios";
-import { getTrendingMovies } from "../../../api/tmdb_api";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Movie } from "../../../types";
-const TrendingCarousel = () => {
+
+interface Props {
+  title: string;
+  movieData: Movie[];
+}
+
+const TrendingCarousel = ({ title, movieData }: Props) => {
   const imageUrl = `https://image.tmdb.org/t/p/original`;
 
   const [trendingMovies, setTrendingMovies] = useState<Movie[] | []>([]);
 
-  const { isLoading, error } = useQuery<AxiosResponse>({
-    queryKey: ["trendingMovies"],
-    queryFn: getTrendingMovies,
-    onSuccess: async (data) => {
-      console.log("this is trending movie data", data.data.results);
-      setTrendingMovies(data.data.results);
-    },
-    onError: (error) => {
-      console.log(error);
-    },
-  });
-
-  if (isLoading) console.log("Loading...");
-  if (error) console.log("An error has occurred");
+  useEffect(() => {
+    setTrendingMovies(movieData);
+    return () => {
+      setTrendingMovies([]);
+    };
+  }, [movieData]);
 
   const settings = {
     dots: false,
@@ -70,8 +65,9 @@ const TrendingCarousel = () => {
 
   return (
     <section>
-      <div></div>
-      <h1 className="text-white text-3xl">Trending</h1>
+      <h1 className="text-white/75 text-3xl pl-2 pb-5 font-thin font-mono">
+        {title}
+      </h1>
       <Slider {...settings}>
         {trendingMovies.map((slide) => {
           return (
@@ -80,6 +76,7 @@ const TrendingCarousel = () => {
                 className="w-auto h-auto object-fill rounded-lg"
                 src={imageUrl + (slide?.backdrop_path || slide?.poster_path)}
                 alt={slide?.original_title}
+                loading="lazy"
               />
             </div>
           );
