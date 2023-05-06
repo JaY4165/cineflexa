@@ -3,13 +3,16 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useState, useEffect } from "react";
 import { Movie } from "../../../types";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 interface Props {
   title: string;
   carouselData: Movie[];
+  isLoading: boolean;
 }
 
-const TrendingCarousel = ({ title, carouselData }: Props) => {
+const TrendingCarousel = ({ title, carouselData, isLoading }: Props) => {
   const imageUrl = `https://image.tmdb.org/t/p/original`;
 
   const [watchCarousel, setWatchCarousel] = useState<Movie[] | []>([]);
@@ -70,11 +73,14 @@ const TrendingCarousel = ({ title, carouselData }: Props) => {
       </h1>
       <Slider {...settings}>
         {watchCarousel.map((slide) => {
+          const imagePath = slide?.backdrop_path ?? slide?.poster_path ?? "";
+          const imageSrc = imageUrl + imagePath;
           return (
             <div className="p-2 outline-none" key={slide.id}>
-              <img
-                className="w-auto h-auto object-fill rounded-lg outline-none"
-                src={imageUrl + (slide?.backdrop_path || slide?.poster_path)}
+              <LazyLoadImage
+                effect="blur"
+                className="w-full h-full object-fill rounded-lg outline-none"
+                src={imageSrc}
                 alt={slide?.original_title}
                 loading="lazy"
               />

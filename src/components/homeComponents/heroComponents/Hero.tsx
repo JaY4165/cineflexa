@@ -1,9 +1,9 @@
-import blade1 from "../../../assets/bladerunner1.jpg";
 import { BsStarFill } from "react-icons/bs";
 import "../../../css/HomePageCss/home.css";
 import { Movie } from "../../../types";
 import { useState, useLayoutEffect, useEffect } from "react";
 import axios from "axios";
+import bghero from "../../../assets/bghero.jpg";
 
 interface Props {
   heroMovie: Movie[];
@@ -39,7 +39,6 @@ const Hero = ({ heroMovie }: Props) => {
           `${imageUrl}${bannerMovie?.backdrop_path || bannerMovie?.poster_path}`
         )
         .then((res) => {
-          console.log(res.config.url);
           setBannerImage(res.config.url);
         })
         .catch((err) => {
@@ -54,11 +53,11 @@ const Hero = ({ heroMovie }: Props) => {
       <div
         className={`justify-center h-full object-cover
         bg-no-repeat bg-cover bg-center`}
-        style={{ backgroundImage: `url(${bannerImage || blade1})` }}
+        style={{ backgroundImage: `url(${bannerImage || bghero})` }}
       >
-        <div className="flex flex-col justify-end h-full w-full pb-20 pl-4 md:pl-7 md:pt-52 backdrop-brightness-[0.25] font-[Poppins]">
+        <div className="flex flex-col justify-end h-full w-full pb-10 md:pb-10 pl-4 md:pl-7 md:pt-52 backdrop-brightness-[0.25] font-[Poppins]">
           <h1 className="text-white text-3xl sm:text-3xl md:text-4xl lg:text-6xl pb-4 pl-1 font-[Poppins] font-bold">
-            {bannerMovie?.title || "Blade Runner"}
+            {bannerMovie?.title || ""}
           </h1>
           <div className="pl-1 md:inline-flex">
             <div className="inline-flex">
@@ -66,17 +65,17 @@ const Hero = ({ heroMovie }: Props) => {
                 <BsStarFill size={30} color="gold" />
               </span>
               <span className="text-white text-3xl pl-2 font-[Poppins] font-thin">
-                {bannerMovie?.vote_average || "8.1"}
+                {bannerMovie?.vote_average || ""}
               </span>
 
               <span className="text-slate-300 text-2xl pl-3">|</span>
               <span className="text-white/70 text-2xl pt-1.5 pl-2 font-[Poppins] font-light">
-                {bannerMovie?.vote_count || "1055"}
+                {bannerMovie?.vote_count || ""}
               </span>
             </div>
             <div className="inline-flex md:pl-6">
               <span className="text-white/75 pt-[0.7rem] pl-2 font-[Poppins]">
-                {bannerMovie?.original_language || "en"}
+                {bannerMovie?.original_language || ""}
               </span>
               <span className="text-white/75 pt-[0.7rem] pl-6">
                 <ul>
@@ -88,7 +87,7 @@ const Hero = ({ heroMovie }: Props) => {
               <span className="text-white/75 pt-[0.7rem] pl-6">
                 <ul>
                   <li className="list-item list-disc">
-                    {bannerMovie?.release_date || "2023"}
+                    {bannerMovie?.release_date || ""}
                   </li>
                 </ul>
               </span>
@@ -96,12 +95,7 @@ const Hero = ({ heroMovie }: Props) => {
           </div>
           <div className="pl-3 md:pl-2">
             <p className="paragraph text-white/80 text-md pt-5 font-mono font-light  max-w-[90%] md:max-w-[65%] lg:max-w-[70%] xl:max-w-[75%]">
-              {bannerMovie?.overview ||
-                `Thirty years after the events of the first film, a new blade
-              runner, LAPD Officer K, unearths a long-buried secret that has the
-              potential to plunge what's left of society into chaos. K's
-              discovery leads him on a quest to find Rick Deckard, a former LAPD
-              blade runner who has been missing for 30 years.`}
+              {bannerMovie?.overview || ``}
             </p>
           </div>
         </div>

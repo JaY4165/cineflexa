@@ -28,3 +28,17 @@ export const getTopRatedSeries = (): Promise<AxiosResponse> => {
     url: `3/tv/top_rated`,
   });
 };
+
+export const getActionMovies = (): Promise<AxiosResponse> => {
+  return request({
+    method: "get",
+    url: `3/discover/movie?with_genres=28`,
+  });
+};
+
+export const getDocumentaryMovies = (): Promise<AxiosResponse> => {
+  return request({
+    method: "get",
+    url: `3/discover/movie?with_genres=27`,
+  });
+};

@@ -2,6 +2,8 @@ import Carousel from "../carouselComponent/Carousel";
 import { useQuery } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";
 import {
+  getActionMovies,
+  getDocumentaryMovies,
   getTopRatedMovies,
   getTopRatedSeries,
   getTrendingMovies,
@@ -19,11 +21,16 @@ const Watchables = () => {
   const [topRatedSeriesData, setTopRatedSeriesData] = useState<Movie[] | []>(
     []
   );
+  const [actionMovieData, setActionMovieData] = useState<Movie[] | []>([]);
+
+  const [documentaryMovieData, setDocumentaryMovieData] = useState<
+    Movie[] | []
+  >([]);
+
   const trendingCarousel = useQuery<AxiosResponse>({
     queryKey: ["trendingMovies"],
     queryFn: getTrendingMovies,
     onSuccess: async (data) => {
-      console.log("this is trending movie data", data.data.results);
       setTrendingMoviesData(data.data.results);
     },
     onError: (error) => {
@@ -35,7 +42,6 @@ const Watchables = () => {
     queryKey: ["topRatedMovies"],
     queryFn: getTopRatedMovies,
     onSuccess: async (data) => {
-      console.log("this is trending movie data", data.data.results);
       setTopRatedMoviesData(data.data.results);
     },
     onError: (error) => {
@@ -47,7 +53,6 @@ const Watchables = () => {
     queryKey: ["topRatedSeries"],
     queryFn: getTopRatedSeries,
     onSuccess: async (data) => {
-      console.log("this is trending movie data", data.data.results);
       setTopRatedSeriesData(data.data.results);
     },
     onError: (error) => {
@@ -55,23 +60,70 @@ const Watchables = () => {
     },
   });
 
-  if (trendingCarousel.isLoading || topRatedMovieCarousel.isLoading)
+  const actionMoviesCarousel = useQuery<AxiosResponse>({
+    queryKey: ["actionMovies"],
+    queryFn: getActionMovies,
+    onSuccess: async (data) => {
+      setActionMovieData(data.data.results);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const documentaryMoviesCarousel = useQuery<AxiosResponse>({
+    queryKey: ["documentaryMovies"],
+    queryFn: getDocumentaryMovies,
+    onSuccess: async (data) => {
+      setDocumentaryMovieData(data.data.results);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  if (
+    trendingCarousel.isLoading ||
+    topRatedMovieCarousel.isLoading ||
+    topRatedSeriesCarousel.isLoading
+  )
     console.log("Loading...");
-  if (trendingCarousel.isError || topRatedMovieCarousel.isError)
+  if (
+    trendingCarousel.isError ||
+    topRatedMovieCarousel.isError ||
+    topRatedSeriesCarousel.isError
+  )
     console.log("An error has occurred");
 
   return (
     <>
-      <div className="h-screen w-screen">
+      <div className="h-auto w-screen">
         <div className="pt-14 w-full px-8 z-50 text-black ">
-          <Carousel title={"Trending"} carouselData={trendingMoviesData} />
+          <Carousel
+            title={"Trending"}
+            carouselData={trendingMoviesData}
+            isLoading={trendingCarousel.isLoading}
+          />
           <Carousel
             title={"Top Rated Movies"}
             carouselData={topRatedMoviesData}
+            isLoading={topRatedMovieCarousel.isLoading}
           />
           <Carousel
             title={"Top Rated Series"}
             carouselData={topRatedSeriesData}
+            isLoading={topRatedSeriesCarousel.isLoading}
+          />
+
+          <Carousel
+            title={"Action Movies"}
+            carouselData={actionMovieData}
+            isLoading={actionMoviesCarousel.isLoading}
+          />
+          <Carousel
+            title={"Horror Movies"}
+            carouselData={documentaryMovieData}
+            isLoading={documentaryMoviesCarousel.isLoading}
           />
         </div>
       </div>
