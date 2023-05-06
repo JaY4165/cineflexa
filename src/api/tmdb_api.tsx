@@ -16,3 +16,10 @@ export const getMovieImage = (
     url: `t/p/original/${imgUrl}`,
   });
 };
+
+export const getTrendingMovies = (): Promise<AxiosResponse> => {
+  return request({
+    method: "get",
+    url: `3/trending/movie/day`,
+  });
+};
