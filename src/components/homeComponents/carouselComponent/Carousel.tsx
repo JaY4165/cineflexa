@@ -6,20 +6,20 @@ import { Movie } from "../../../types";
 
 interface Props {
   title: string;
-  movieData: Movie[];
+  carouselData: Movie[];
 }
 
-const TrendingCarousel = ({ title, movieData }: Props) => {
+const TrendingCarousel = ({ title, carouselData }: Props) => {
   const imageUrl = `https://image.tmdb.org/t/p/original`;
 
-  const [trendingMovies, setTrendingMovies] = useState<Movie[] | []>([]);
+  const [watchCarousel, setWatchCarousel] = useState<Movie[] | []>([]);
 
   useEffect(() => {
-    setTrendingMovies(movieData);
+    setWatchCarousel(carouselData);
     return () => {
-      setTrendingMovies([]);
+      setWatchCarousel([]);
     };
-  }, [movieData]);
+  }, [carouselData]);
 
   const settings = {
     dots: false,
@@ -64,12 +64,12 @@ const TrendingCarousel = ({ title, movieData }: Props) => {
   };
 
   return (
-    <section>
+    <section className="pb-10">
       <h1 className="text-white/75 text-3xl pl-2 pb-5 font-thin font-mono">
         {title}
       </h1>
       <Slider {...settings}>
-        {trendingMovies.map((slide) => {
+        {watchCarousel.map((slide) => {
           return (
             <div className="p-2 outline-none" key={slide.id}>
               <img
