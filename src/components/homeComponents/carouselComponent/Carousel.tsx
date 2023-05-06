@@ -71,9 +71,9 @@ const TrendingCarousel = ({ title, movieData }: Props) => {
       <Slider {...settings}>
         {trendingMovies.map((slide) => {
           return (
-            <div className="p-2" key={slide.id}>
+            <div className="p-2 outline-none" key={slide.id}>
               <img
-                className="w-auto h-auto object-fill rounded-lg"
+                className="w-auto h-auto object-fill rounded-lg outline-none"
                 src={imageUrl + (slide?.backdrop_path || slide?.poster_path)}
                 alt={slide?.original_title}
                 loading="lazy"

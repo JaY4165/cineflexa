@@ -6,8 +6,10 @@ import { useState } from "react";
 import { Movie } from "../../../types";
 
 const Watchables = () => {
-  const [trendingMoviesData, setTrendingMoviesData] = useState<Movie[] | []>([]);
-  const { isLoading, error } = useQuery<AxiosResponse>({
+  const [trendingMoviesData, setTrendingMoviesData] = useState<Movie[] | []>(
+    []
+  );
+  const trendingCarousel = useQuery<AxiosResponse>({
     queryKey: ["trendingMovies"],
     queryFn: getTrendingMovies,
     onSuccess: async (data) => {
@@ -19,13 +21,13 @@ const Watchables = () => {
     },
   });
 
-  if (isLoading) console.log("Loading...");
-  if (error) console.log("An error has occurred");
+  if (trendingCarousel.isLoading) console.log("Loading...");
+  if (trendingCarousel.isError) console.log("An error has occurred");
 
   return (
     <div className="h-screen w-screen">
       <div className="pt-14 w-full px-8 z-50 text-black ">
-        <Carousel  title={"Trending"} movieData={trendingMoviesData} />
+        <Carousel title={"Trending"} movieData={trendingMoviesData} />
       </div>
     </div>
   );
