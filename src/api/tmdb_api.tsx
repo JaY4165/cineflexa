@@ -49,3 +49,10 @@ export const getAllMovies = (): Promise<AxiosResponse> => {
     url: `3/discover/movie?with_genres=10752&include_adult=false`,
   });
 };
+
+export const getAllTv = (): Promise<AxiosResponse> => {
+  return request({
+    method: "get",
+    url: `3/discover/tv?include_adult=false&page=3`,
+  });
+};
