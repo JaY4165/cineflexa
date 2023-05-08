@@ -3,12 +3,20 @@ import ErrorPage from "./pages/ErrorPage";
 import HomePage from "./pages/HomePage";
 import LoadingPage from "./pages/LoadingPage";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import MoviesPage from "./pages/MoviesPage";
+import SeriesPage from "./pages/SeriesPage";
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Navbar />,
-      children: [{ path: "/", element: <HomePage />, index: true }],
+      errorElement: <ErrorPage />,
+      children: [
+        { path: "/", element: <HomePage />, index: true },
+        { path: "/movies", element: <MoviesPage /> },
+        { path: "/series", element: <SeriesPage /> },
+        { path: "/watchlist" },
+      ],
     },
   ]);
 

@@ -32,7 +32,7 @@ const DesktopNav = () => {
           Movies
         </Link>
         <Link
-          to="/shows"
+          to="/series"
           className="pl-7 text-white/80 text-xl hover:text-white hover:duration-300 duration-1000 "
         >
           Tv Shows
@@ -78,7 +78,7 @@ const DesktopNav = () => {
                 Movies
               </Link>
               <Link
-                to="/shows"
+                to="/series"
                 className=" text-white/80 text-xl hover:text-white hover:duration-300 duration-1000 pt-5"
               >
                 Tv Shows
