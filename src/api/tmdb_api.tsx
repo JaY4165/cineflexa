@@ -56,3 +56,10 @@ export const getAllTv = (): Promise<AxiosResponse> => {
     url: `3/discover/tv?include_adult=false&page=3`,
   });
 };
+
+export const getMovieDetails = (movieId : any): Promise<AxiosResponse> => {
+  return request({
+    method: "get",
+    url: `3/movie/${movieId}`,
+  });
+};

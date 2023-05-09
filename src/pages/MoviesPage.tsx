@@ -6,6 +6,7 @@ import { AxiosResponse } from "axios";
 import { useState } from "react";
 import { Movie } from "../types";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Link } from "react-router-dom";
 
 const MoviesPage = () => {
   const [movieData, setMovieData] = useState<Movie[] | []>([]);
@@ -32,15 +33,17 @@ const MoviesPage = () => {
       >
         {movieData.map((movie) => (
           <div className="" key={movie.id}>
-            <LazyLoadImage
-              effect="blur"
-              className="w-full h-full object-fill rounded-lg outline-none"
-              src={`https://image.tmdb.org/t/p/original/${
-                movie.poster_path || movie.backdrop_path
-              }`}
-              alt={movie.original_title || movie.title}
-              loading="lazy"
-            />
+            <Link to={`/movies/${movie.id}`}>
+              <LazyLoadImage
+                effect="blur"
+                className="w-full h-full object-fill rounded-lg outline-none"
+                src={`https://image.tmdb.org/t/p/original/${
+                  movie.poster_path || movie.backdrop_path
+                }`}
+                alt={movie.original_title || movie.title}
+                loading="lazy"
+              />
+            </Link>
           </div>
         ))}
       </div>

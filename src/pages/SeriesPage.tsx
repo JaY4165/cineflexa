@@ -21,6 +21,8 @@ const SeriesPage = () => {
     },
   });
 
+  
+
   return (
     <div className="h-screen w-full pl-6 pr-6 pb-10">
       <h1 className="pt-28  text-white/60 text-3xl font-thin font-mono text-white">
