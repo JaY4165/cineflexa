@@ -79,9 +79,7 @@ const Hero = ({ heroMovie }: Props) => {
               </span>
               <span className="text-white/75 pt-[0.7rem] pl-6">
                 <ul>
-                  <li className="list-item list-disc">
-                    Science Fiction , Drama
-                  </li>
+                  <li className="list-item list-disc">Action , Adventure</li>
                 </ul>
               </span>
               <span className="text-white/75 pt-[0.7rem] pl-6">

@@ -103,27 +103,32 @@ const Watchables = () => {
             title={"Trending"}
             carouselData={trendingMoviesData}
             isLoading={trendingCarousel.isLoading}
+            path={"movies"}
           />
           <Carousel
             title={"Top Rated Movies"}
             carouselData={topRatedMoviesData}
             isLoading={topRatedMovieCarousel.isLoading}
+            path={"movies"}
           />
           <Carousel
             title={"Top Rated Series"}
             carouselData={topRatedSeriesData}
             isLoading={topRatedSeriesCarousel.isLoading}
+            path={"series"}
           />
 
           <Carousel
             title={"Action Movies"}
             carouselData={actionMovieData}
             isLoading={actionMoviesCarousel.isLoading}
+            path={"movies"}
           />
           <Carousel
             title={"Horror Movies"}
             carouselData={documentaryMovieData}
             isLoading={documentaryMoviesCarousel.isLoading}
+            path={"movies"}
           />
         </div>
       </div>

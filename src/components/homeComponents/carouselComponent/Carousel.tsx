@@ -5,14 +5,16 @@ import { useState, useEffect } from "react";
 import { Movie } from "../../../types";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { Link } from "react-router-dom";
 
 interface Props {
   title: string;
   carouselData: Movie[];
   isLoading: boolean;
+  path: string
 }
 
-const TrendingCarousel = ({ title, carouselData, isLoading }: Props) => {
+const TrendingCarousel = ({ title, carouselData, isLoading,path }: Props) => {
   const imageUrl = `https://image.tmdb.org/t/p/original`;
 
   const [watchCarousel, setWatchCarousel] = useState<Movie[] | []>([]);
@@ -77,13 +79,15 @@ const TrendingCarousel = ({ title, carouselData, isLoading }: Props) => {
           const imageSrc = imageUrl + imagePath;
           return (
             <div className="p-2 outline-none" key={slide.id}>
-              <LazyLoadImage
-                effect="blur"
-                className="w-full h-full object-fill rounded-lg outline-none"
-                src={imageSrc}
-                alt={slide?.original_title}
-                loading="lazy"
-              />
+              <Link to={`/${path}/${slide.id}`}>
+                <LazyLoadImage
+                  effect="blur"
+                  className="w-full h-full object-fill rounded-lg outline-none"
+                  src={imageSrc}
+                  alt={slide?.original_title}
+                  loading="lazy"
+                />
+              </Link>
             </div>
           );
         })}

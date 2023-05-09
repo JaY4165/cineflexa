@@ -6,6 +6,7 @@ import { AxiosResponse } from "axios";
 import { useState } from "react";
 import { Movie } from "../types";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Link } from "react-router-dom";
 
 const SeriesPage = () => {
   const [tvData, setTvData] = useState<Movie[] | []>([]);
@@ -21,8 +22,6 @@ const SeriesPage = () => {
     },
   });
 
-  
-
   return (
     <div className="h-screen w-full pl-6 pr-6 pb-10">
       <h1 className="pt-28  text-white/60 text-3xl font-thin font-mono text-white">
@@ -34,15 +33,17 @@ const SeriesPage = () => {
       >
         {tvData.map((tv) => (
           <div className="" key={tv.id}>
-            <LazyLoadImage
-              effect="blur"
-              className="w-full h-full object-fill rounded-lg outline-none"
-              src={`https://image.tmdb.org/t/p/original/${
-                tv.poster_path || tv.backdrop_path
-              }`}
-              alt={tv.original_title || tv.title}
-              loading="lazy"
-            />
+            <Link to={`/series/${tv.id}`} onClick={() => console.log(tv.id)}>
+              <LazyLoadImage
+                effect="blur"
+                className="w-full h-full object-fill rounded-lg outline-none"
+                src={`https://image.tmdb.org/t/p/original/${
+                  tv.poster_path || tv.backdrop_path
+                }`}
+                alt={tv.original_title || tv.title}
+                loading="lazy"
+              />
+            </Link>
           </div>
         ))}
       </div>

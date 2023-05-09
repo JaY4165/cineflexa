@@ -1,26 +1,25 @@
 import { useState, useEffect } from "react";
-import { Movie } from "../types";
-
+import { Series } from "../types";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { BsStarFill } from "react-icons/bs";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
-const MovieDetailsPage: React.FC = () => {
-  const { movieId } = useParams();
-  const [mId, setMId] = useState<any>(null);
-  const [movieDetailData, setMovieDetailData] = useState<Movie | null>();
+const SeriesDetailsPage: React.FC = () => {
+  const { seriesId } = useParams();
+  const [tvId, setTvId] = useState<any>(null);
+  const [tvDetailData, setTvDetailData] = useState<Series | null>();
   const [dataLoading, setDataLoading] = useState<boolean>(true);
   const [streamPlatforms, setStreamPlatforms] = useState<string | null>(null);
 
   useEffect(() => {
-    setMId(movieId);
-  }, [movieId]);
+    setTvId(seriesId);
+  }, [seriesId]);
 
   useEffect(() => {
-    if (mId) {
+    if (tvId) {
       axios
-        .get(`https://api.themoviedb.org/3/movie/${mId}`, {
+        .get(`https://api.themoviedb.org/3/tv/${tvId}`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${import.meta.env.VITE_APP_TOKEN}`,
@@ -29,8 +28,8 @@ const MovieDetailsPage: React.FC = () => {
         .then((res) => {
           if (res) {
             setDataLoading(false);
-            // console.log(res.data);
-            setMovieDetailData(res.data);
+            console.log(res.data);
+            setTvDetailData(res.data);
           }
         })
         .catch((err) => {
@@ -38,7 +37,7 @@ const MovieDetailsPage: React.FC = () => {
         });
 
       axios
-        .get(`https://api.themoviedb.org/3/movie/${mId}/watch/providers`, {
+        .get(`https://api.themoviedb.org/3/tv/${tvId}/watch/providers`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${import.meta.env.VITE_APP_TOKEN}`,
@@ -59,9 +58,9 @@ const MovieDetailsPage: React.FC = () => {
     }
 
     return () => {
-      setMovieDetailData(null);
+      setTvDetailData(null);
     };
-  }, [mId]);
+  }, [tvId]);
 
   const redirectToPlatforms = () => {
     if (streamPlatforms) {
@@ -70,6 +69,8 @@ const MovieDetailsPage: React.FC = () => {
       alert("No Streaming Platforms Available");
     }
   };
+
+  console.log(tvDetailData);
 
   return (
     <>
@@ -80,7 +81,7 @@ const MovieDetailsPage: React.FC = () => {
             style={{
               backgroundImage: `url(${
                 "https://image.tmdb.org/t/p/original" +
-                (movieDetailData?.backdrop_path || movieDetailData?.poster_path)
+                (tvDetailData?.backdrop_path || tvDetailData?.poster_path)
               })`,
             }}
           >
@@ -91,12 +92,9 @@ const MovieDetailsPage: React.FC = () => {
                     effect="blur"
                     className="w-[100%] h-full object-fill rounded-lg outline-none"
                     src={`https://image.tmdb.org/t/p/original/${
-                      movieDetailData?.poster_path ||
-                      movieDetailData?.backdrop_path
+                      tvDetailData?.poster_path || tvDetailData?.backdrop_path
                     }`}
-                    alt={
-                      movieDetailData?.original_title || movieDetailData?.title
-                    }
+                    alt={tvDetailData?.name || ""}
                     loading="lazy"
                   />
                 </div>
@@ -104,7 +102,7 @@ const MovieDetailsPage: React.FC = () => {
               <div className="max-sm:pb-20 max-md:pt-5">
                 <div className="max-sm:pl-5">
                   <h1 className="text-white text-3xl sm:text-3xl md:text-4xl lg:text-6xl pb-4 pl-1 font-[Poppins] font-bold">
-                    {movieDetailData?.title || ""}
+                    {tvDetailData?.name || ""}
                   </h1>
                   <div className="pl-1 md:inline-flex">
                     <div className="inline-flex">
@@ -112,29 +110,31 @@ const MovieDetailsPage: React.FC = () => {
                         <BsStarFill size={30} color="gold" />
                       </span>
                       <span className="text-white text-3xl pl-2 font-[Poppins] font-thin">
-                        {movieDetailData?.vote_average || ""}
+                        {tvDetailData?.vote_average || ""}
                       </span>
 
                       <span className="text-slate-300 text-2xl pl-3">|</span>
                       <span className="text-white/70 text-2xl pt-1.5 pl-2 font-[Poppins] font-light">
-                        {movieDetailData?.vote_count || ""}
+                        {tvDetailData?.vote_count || ""}
                       </span>
                     </div>
                     <div className="inline-flex md:pl-4">
                       <span className="text-white/75 pt-[0.7rem] pl-1 font-[Poppins]">
-                        {movieDetailData?.original_language || ""}
+                        {tvDetailData?.original_language || ""}
                       </span>
                       <span className="text-white/75 pt-[0.7rem] pl-6">
                         <ul>
                           <li className="list-item list-disc">
-                            Action , Adventure
+                            {tvDetailData?.genres
+                              ?.map((genre) => genre.name)
+                              .join(", ") || ""}
                           </li>
                         </ul>
                       </span>
                       <span className="text-white/75 pt-[0.7rem] pl-6">
                         <ul>
                           <li className="list-item list-disc">
-                            {movieDetailData?.release_date || ""}
+                            {tvDetailData?.first_air_date || ""}
                           </li>
                         </ul>
                       </span>
@@ -142,7 +142,7 @@ const MovieDetailsPage: React.FC = () => {
                   </div>
                   <div className="pl-1 md:pl-2">
                     <p className=" text-white/80 text-md pt-5 font-mono font-light  max-w-[90%] md:max-w-[65%] lg:max-w-[70%] xl:max-w-[75%]">
-                      {movieDetailData?.overview || ``}
+                      {tvDetailData?.overview || ``}
                     </p>
                   </div>
                   <div className="pt-5 pl-3">
@@ -169,4 +169,4 @@ const MovieDetailsPage: React.FC = () => {
   );
 };
 
-export default MovieDetailsPage;
+export default SeriesDetailsPage;
