@@ -33,7 +33,7 @@ const DesktopNav = () => {
         </Link>
         <Link
           to="/series"
-          className="pl-7 text-white/80 text-xl hover:text-white hover:duration-300 duration-1000 "
+          className="pl-7 text-white/80 text-xl hover:text-white hover:duration-300 duration-1000 pr-5"
         >
           Tv Shows
         </Link>
