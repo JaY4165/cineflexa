@@ -30,7 +30,6 @@ const Hero = ({ heroMovie }: Props) => {
     };
   }, [banner]);
 
-  console.log(bannerMovie);
 
   useEffect(() => {
     const fetchMovieImage = async () => {

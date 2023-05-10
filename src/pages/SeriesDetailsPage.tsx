@@ -28,7 +28,6 @@ const SeriesDetailsPage: React.FC = () => {
         .then((res) => {
           if (res) {
             setDataLoading(false);
-            console.log(res.data);
             setTvDetailData(res.data);
           }
         })
@@ -69,8 +68,6 @@ const SeriesDetailsPage: React.FC = () => {
       alert("No Streaming Platforms Available");
     }
   };
-
-  console.log(tvDetailData);
 
   return (
     <>

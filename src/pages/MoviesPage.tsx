@@ -33,15 +33,15 @@ const MoviesPage = () => {
     },
   });
 
+  const handleSearchMovie = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchMovie(e.target.value);
+  };
+
   useEffect(() => {
     if (searchMovie === "") {
       setMovieData([...(allMoviesData.data?.data.results || [])]);
     }
   }, [searchMovie, allMoviesData]);
-
-  const handleSearchMovie = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchMovie(e.target.value);
-  };
 
   return (
     <div className="h-screen w-full pl-6 pr-6 pb-10">

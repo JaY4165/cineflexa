@@ -64,7 +64,7 @@ const SeriesPage = () => {
       >
         {tvData.map((tv) => (
           <div className="" key={tv.id}>
-            <Link to={`/series/${tv.id}`} onClick={() => console.log(tv.id)}>
+            <Link to={`/series/${tv.id}`}>
               <LazyLoadImage
                 effect="blur"
                 className="w-full h-full object-fill rounded-lg outline-none"
