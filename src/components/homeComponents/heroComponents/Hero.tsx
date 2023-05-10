@@ -13,9 +13,7 @@ const Hero = ({ heroMovie }: Props) => {
   const [banner, setBanner] = useState<Movie[] | []>([]);
   const [randomMovie, setRandomMovie] = useState<Number | any>(10);
   const [bannerMovie, setBannerMovie] = useState<Movie | null>(null);
-  const [bannerImage, setBannerImage] = useState<String | null | undefined>(
-    null
-  );
+
   const imageUrl = `https://image.tmdb.org/t/p/original`;
 
   useLayoutEffect(() => {
@@ -30,29 +28,17 @@ const Hero = ({ heroMovie }: Props) => {
     };
   }, [banner]);
 
-
-  useEffect(() => {
-    const fetchMovieImage = async () => {
-      await axios
-        .get(
-          `${imageUrl}${bannerMovie?.backdrop_path || bannerMovie?.poster_path}`
-        )
-        .then((res) => {
-          setBannerImage(res.config.url);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    if (bannerMovie) fetchMovieImage();
-  }, [bannerMovie]);
-
   return (
     <div className="h-screen w-screen  bg-[rgb(7,7,7)] overflow-x-hidden">
       <div
         className={`justify-center h-full object-cover
         bg-no-repeat bg-cover bg-center`}
-        style={{ backgroundImage: `url(${bannerImage || bghero})` }}
+        // style={{ backgroundImage: `url(${bannerImage || bghero})` }}
+        style={{
+          backgroundImage: `url(${
+            imageUrl + (bannerMovie?.backdrop_path || bannerMovie?.poster_path)
+          })`,
+        }}
       >
         <div className="flex flex-col justify-end h-full w-full pb-10 md:pb-10 pl-4 md:pl-7 md:pt-52 backdrop-brightness-[0.25] font-[Poppins]">
           <h1 className="text-white text-3xl sm:text-3xl md:text-4xl lg:text-6xl pb-4 pl-1 font-[Poppins] font-bold">
