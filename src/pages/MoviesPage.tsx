@@ -6,7 +6,7 @@ import { useState, useEffect, ChangeEvent } from "react";
 import { Movie } from "../types";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
-import { GoSearch } from "react-icons/go";
+
 
 const MoviesPage = () => {
   const [movieData, setMovieData] = useState<Movie[] | []>([]);
@@ -50,13 +50,13 @@ const MoviesPage = () => {
         <h1 className="pt-28 pb-10 text-white/60 text-3xl font-thin font-mono text-white">
           Movies
         </h1>
-          <input
-            type="text"
-            className="w-full py-2 rounded-2xl bg-black outline-none caret-white  px-4 text-white"
-            placeholder="Search for a movie..."
-            style={{ border: "0.5px solid white" }}
-            onChange={handleSearchMovie}
-          />
+        <input
+          type="text"
+          className="w-full py-2 rounded-2xl bg-black outline-none caret-white  px-4 text-white"
+          placeholder="Search for a movie..."
+          style={{ border: "0.5px solid white" }}
+          onChange={handleSearchMovie}
+        />
       </div>
       <div
         className="h-full w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-4 md:gap-
