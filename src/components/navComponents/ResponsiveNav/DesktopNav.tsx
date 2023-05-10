@@ -37,12 +37,12 @@ const DesktopNav = () => {
         >
           Tv Shows
         </Link>
-        <Link
+        {/* <Link
           to="/news"
           className="pl-7 text-white/80 text-xl hover:text-white hover:duration-300 duration-1000 "
         >
           News
-        </Link>
+        </Link> */}
         <Link
           to="/watchlist"
           className="pl-7 text-white/80 text-xl hover:text-white hover:duration-300 duration-1000"
@@ -83,12 +83,12 @@ const DesktopNav = () => {
               >
                 Tv Shows
               </Link>
-              <Link
+              {/* <Link
                 to="/news"
                 className=" text-white/80 text-xl hover:text-white hover:duration-300 duration-1000 pt-5"
               >
                 News
-              </Link>
+              </Link> */}
               {/* <Link
                 to="/watchlist"
                 className="text-white/80 text-xl hover:text-white hover:duration-300 duration-1000 pt-5"
