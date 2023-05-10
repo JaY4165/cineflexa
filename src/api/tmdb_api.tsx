@@ -46,7 +46,7 @@ export const getDocumentaryMovies = (): Promise<AxiosResponse> => {
 export const getAllMovies = (): Promise<AxiosResponse> => {
   return request({
     method: "get",
-    url: `3/discover/movie?with_genres=10752&include_adult=false`,
+    url: `3/discover/movie?include_adult=false`,
   });
 };
 
@@ -57,9 +57,23 @@ export const getAllTv = (): Promise<AxiosResponse> => {
   });
 };
 
-export const getMovieDetails = (movieId : any): Promise<AxiosResponse> => {
+export const getMovieDetails = (movieId: any): Promise<AxiosResponse> => {
   return request({
     method: "get",
     url: `3/movie/${movieId}`,
+  });
+};
+
+export const getMoviesByName = (movieName: String): Promise<AxiosResponse> => {
+  return request({
+    method: "get",
+    url: `3/search/movie?query=${movieName}`,
+  });
+};
+
+export const getTvByName = (tvName: String): Promise<AxiosResponse> => {
+  return request({
+    method: "get",
+    url: `3/search/tv?query=${tvName}`,
   });
 };
