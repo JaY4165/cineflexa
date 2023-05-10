@@ -43,7 +43,7 @@ const DesktopNav = () => {
         >
           News
         </Link> */}
-        <Link
+        {/* <Link
           to="/watchlist"
           className="pl-7 text-white/80 text-xl hover:text-white hover:duration-300 duration-1000"
         >
@@ -60,7 +60,7 @@ const DesktopNav = () => {
           <button className=" text-white/80 bg-none px-3 py-[4px] rounded-md text-xl font-light border-white/80 border-solid border-[1px] hover:bg-slate-50 hover:text-black hover:duration-500 duration-1000">
             Login
           </button>
-        </Link>
+        </Link> */}
       </div>
 
       {showSideBar ? (
@@ -101,11 +101,11 @@ const DesktopNav = () => {
               >
                 <BsHeartFill />
               </Link> */}
-              <Link to="/login" className=" md:hidden pt-5">
+              {/* <Link to="/login" className=" md:hidden pt-5">
                 <button className=" text-white/80 bg-none px-3 py-[4px] rounded-md text-xl font-light border-white/80 border-solid border-[1px] hover:bg-slate-50 hover:text-black hover:duration-500 duration-1000">
                   Login
                 </button>
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>
