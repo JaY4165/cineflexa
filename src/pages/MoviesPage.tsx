@@ -7,7 +7,6 @@ import { Movie } from "../types";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 
-
 const MoviesPage = () => {
   const [movieData, setMovieData] = useState<Movie[] | []>([]);
   const [searchMovie, setSearchMovie] = useState<string | "">("");

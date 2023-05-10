@@ -10,13 +10,13 @@ import { Link } from "react-router-dom";
 
 const SeriesPage = () => {
   const [tvData, setTvData] = useState<Movie[] | []>([]);
-  const [serchTv, setSearchTv] = useState<string | "">("");
+  const [searchTv, setSearchTv] = useState<string | "">("");
 
   const allTvData = useQuery<AxiosResponse>({
-    queryKey: ["allMovies"],
+    queryKey: ["allTvShows"],
     queryFn: getAllTv,
     onSuccess: async (data) => {
-      setTvData(data.data.results);
+      setTvData([...data.data.results]);
     },
     onError: (error) => {
       console.log(error);
@@ -24,8 +24,8 @@ const SeriesPage = () => {
   });
 
   const movieDataByName = useQuery<AxiosResponse>({
-    queryKey: ["movieByName", serchTv],
-    queryFn: () => getTvByName(serchTv),
+    queryKey: ["tvShowByName", searchTv],
+    queryFn: () => getTvByName(searchTv),
     onSuccess: async (data) => {
       setTvData([...data.data.results]);
     },
@@ -35,10 +35,10 @@ const SeriesPage = () => {
   });
 
   useEffect(() => {
-    if (serchTv === "") {
+    if (searchTv === "") {
       setTvData([...(allTvData.data?.data.results || [])]);
     }
-  }, [serchTv, allTvData]);
+  }, [searchTv, allTvData]);
 
   const handleSearchTv = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTv(e.target.value);

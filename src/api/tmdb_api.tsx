@@ -53,7 +53,7 @@ export const getAllMovies = (): Promise<AxiosResponse> => {
 export const getAllTv = (): Promise<AxiosResponse> => {
   return request({
     method: "get",
-    url: `3/discover/tv?include_adult=false&page=3`,
+    url: `3/discover/tv?include_adult=false&page=4`,
   });
 };
 
